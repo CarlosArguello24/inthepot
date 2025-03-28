@@ -1,0 +1,35 @@
+{% extends 'base.html' %}
+{% block title %}Listado de Plantas{% endblock %}
+{% block content %}
+<a href="{{ url_for('create_planta') }}" class="btn btn-success mb-3">Agregar Planta</a>
+<br>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>ID Planta</th>
+            <th>Nombre Cientifico</th>
+            <th>Nombre Comun</th>
+            <th>Descripcion</th>
+            <th>Stock</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for planta in plantas %}
+        <tr>
+            <td>{{ planta.id_planta }}</td>
+            <td>{{ planta.nombre_cientifico }}</td>
+            <td>{{ planta.nombre_comun }}</td>
+            <td>{{ planta.descripcion }}</td>
+            <td>{{ planta.stock }}</td>
+            <td>
+                <a href="{{ url_for('update_planta', id_planta = planta.id_planta) }}" 
+                class="btn btn-warning">Actualizar</a>
+                <a href="{{ url_for('delete_planta', id_planta = planta.id_planta) }}" 
+                class="btn btn-danger">Eliminar</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+
+{% endblock %}
